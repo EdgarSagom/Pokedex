@@ -1,14 +1,39 @@
 :root {
-    --color--background: #2A5062;
-    --color-first: #fff;
+    --color--background: #03071e;
+    --color--first: #fff;
+
+    --color--normal: #fefae0;
+    --color--fighting: #ffa69e;
+    --color--flying: #90e0ef;
+    --color--poison: #7b2cbf;
+    --color--ground: #a5a5a5;
+    --color--rock: #595959;
+    --color--bug: #9c6644;
+    --color--ghost: #dad2c9;
+    --color--steel: #9fb8d1;
+    --color--fire: #d00000;
+    --color--water: #0582ca;
+    --color--grass: #008000;
+    --color--electric: #ffc300;
+    --color--psychic: #ffe566;
+    --color--ice: #caf0f8;
+    --color--dragon: #e85d04;
+    --color--dark: #3c1642;
+    --color--fairy: #74c69d;
+    --color--unknown: #02c39a;
+    --color--shadow: #22223b;
 }
 
 * {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: cursive, sans-serif;
 }
 
 body {
     background-color: var(--color--background);
+    color: var(--color--background);
 }
 
 /*  ***** HEADER *****  */
@@ -17,7 +42,7 @@ body {
     max-width: 700px;
     margin: auto;
     overflow: hidden;
-    border-radius: 5px;
+    border-radius: 0 0 5px 5px;
     box-shadow: 0 5px 25px,
         0 15px 50px;
     position: relative;
@@ -60,7 +85,7 @@ body {
 
 .slider_btn:hover {
     background: var(--color--background);
-    color: var(--color-first);
+    color: var(--color--first);
     box-shadow: 0 0 15px,
         0 0 35px;
 }
@@ -71,4 +96,255 @@ body {
 
 .slider_btn-right {
     right: 10px;
+}
+
+/*  ***** MAIN *****  */
+/* CARDS */
+.card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
+    margin: 20px;
+}
+
+.box {
+    display: grid;
+    grid-template: 1fr/1fr;
+    grid-template-areas: 'img';
+    cursor: pointer;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: capitalize;
+    font-weight: bold;
+    padding: 5px;
+}
+
+.box img {
+    width: 70%;
+    object-fit: cover;
+    grid-area: img;
+    margin: auto;
+}
+
+/* Colors cards */
+.normal {
+    background: var(--color--normal);
+}
+
+.normal:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--normal),
+        0 0 50px var(--color--normal),
+        0 0 100px var(--color--normal);
+}
+
+.fighting {
+    background: var(--color--fighting);
+}
+
+.fighting:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--fighting),
+        0 0 50px var(--color--fighting),
+        0 0 100px var(--color--fighting);
+}
+
+.flying {
+    background: var(--color--flying);
+}
+
+.flying:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--flying),
+        0 0 50px var(--color--flying),
+        0 0 100px var(--color--flying);
+}
+
+.poison {
+    background: var(--color--poison);
+}
+
+.poison:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--poison),
+        0 0 50px var(--color--poison),
+        0 0 100px var(--color--poison);
+}
+
+.ground {
+    background: var(--color--ground);
+}
+
+.ground:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--ground),
+        0 0 50px var(--color--ground),
+        0 0 100px var(--color--ground);
+}
+
+.rock {
+    background: var(--color--rock);
+}
+
+.rock:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--rock),
+        0 0 50px var(--color--rock),
+        0 0 100px var(--color--rock);
+}
+
+.bug {
+    background: var(--color--bug);
+}
+
+.bug:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--bug),
+        0 0 50px var(--color--bug),
+        0 0 100px var(--color--bug);
+}
+
+.ghost {
+    background: var(--color--ghost);
+}
+
+.ghost:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--ghost),
+        0 0 50px var(--color--ghost),
+        0 0 100px var(--color--ghost);
+}
+
+.steel {
+    background: var(--color--steel);
+}
+
+.steel:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--steel),
+        0 0 50px var(--color--steel),
+        0 0 100px var(--color--steel);
+}
+
+.fire {
+    background: var(--color--fire);
+}
+
+.fire:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--fire),
+        0 0 50px var(--color--fire),
+        0 0 100px var(--color--fire);
+}
+
+.water {
+    background: var(--color--water);
+}
+
+.water:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--water),
+        0 0 50px var(--color--water),
+        0 0 100px var(--color--water);
+}
+
+.grass {
+    background: var(--color--grass);
+}
+
+.grass:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--grass),
+        0 0 50px var(--color--grass),
+        0 0 100px var(--color--grass);
+}
+
+.electric {
+    background: var(--color--electric);
+}
+
+.electric:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--electric),
+        0 0 50px var(--color--electric),
+        0 0 100px var(--color--electric);
+}
+
+.psychic {
+    background: var(--color--psychic);
+}
+
+.psychic:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--psychic),
+        0 0 50px var(--color--psychic),
+        0 0 100px var(--color--psychic);
+}
+
+.ice {
+    background: var(--color--ice);
+}
+
+.ice:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--ice),
+        0 0 50px var(--color--ice),
+        0 0 100px var(--color--ice);
+}
+
+.dragon {
+    background: var(--color--dragon);
+}
+
+.dragon:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--dragon),
+        0 0 50px var(--color--dragon),
+        0 0 100px var(--color--dragon);
+}
+
+.dark {
+    background: var(--color--dark);
+    color: var(--color--first);
+}
+
+.dark:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--dark),
+        0 0 50px var(--color--dark),
+        0 0 100px var(--color--dark);
+}
+
+.fairy {
+    background: var(--color--fairy);
+}
+
+.fairy:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--fairy),
+        0 0 50px var(--color--fairy),
+        0 0 100px var(--color--fairy);
+}
+
+.unknown {
+    background: var(--color--unknown);
+}
+
+.unknown:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--unknown),
+        0 0 50px var(--color--unknown),
+        0 0 100px var(--color--unknown);
+}
+
+.shadow {
+    background: var(--color--shadow);
+    color: var(--color--first);
+}
+
+.shadow:hover {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--shadow),
+        0 0 50px var(--color--shadow),
+        0 0 100px var(--color--shadow);
 }
