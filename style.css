@@ -28,12 +28,13 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: cursive, sans-serif;
 }
 
 body {
+    font-family: cursive, sans-serif;
     background-color: var(--color--background);
     color: var(--color--background);
+    font-weight: bold;
 }
 
 /*  ***** HEADER *****  */
@@ -75,7 +76,6 @@ body {
     top: 50%;
     transform: translateY(-50%);
     font-size: 30px;
-    font-weight: bold;
     font-family: monospace;
     text-align: center;
     border-radius: 50%;
@@ -99,34 +99,7 @@ body {
 }
 
 /*  ***** MAIN *****  */
-/* CARDS */
-.card {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 25px;
-    margin: 20px;
-}
-
-.box {
-    display: grid;
-    grid-template: 1fr/1fr;
-    grid-template-areas: 'img';
-    cursor: pointer;
-    border-radius: 15px;
-    text-align: center;
-    text-transform: capitalize;
-    font-weight: bold;
-    padding: 5px;
-}
-
-.box img {
-    width: 70%;
-    object-fit: cover;
-    grid-area: img;
-    margin: auto;
-}
-
-/* Colors cards */
+/* COLORS CARDS & LIGHTBOX*/
 .normal {
     background: var(--color--normal);
 }
@@ -347,4 +320,336 @@ body {
         0 0 25px var(--color--shadow),
         0 0 50px var(--color--shadow),
         0 0 100px var(--color--shadow);
+}
+
+/* CARDS */
+.card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
+    margin: 20px;
+}
+
+.box {
+    display: grid;
+    grid-template: 1fr/1fr;
+    grid-template-areas: 'img';
+    cursor: pointer;
+    border-radius: 15px;
+    text-align: center;
+    text-transform: capitalize;
+    padding: 5px;
+}
+
+.box img {
+    width: 70%;
+    object-fit: cover;
+    grid-area: img;
+    margin: auto;
+}
+
+/* COLORS LIGHTBOX */
+.normalLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--normal),
+        0 0 50px var(--color--normal),
+        0 0 100px var(--color--normal);
+}
+
+.normalLight span {
+    color: var(--color--normal);
+}
+
+.fightingLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--fighting),
+        0 0 50px var(--color--fighting),
+        0 0 100px var(--color--fighting);
+}
+
+.fightingLight span {
+    color: var(--color--fighting);
+}
+
+.flyingLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--flying),
+        0 0 50px var(--color--flying),
+        0 0 100px var(--color--flying);
+}
+
+.flyingLight span {
+    color: var(--color--flying);
+}
+
+.poisonLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--poison),
+        0 0 50px var(--color--poison),
+        0 0 100px var(--color--poison);
+}
+
+.poisonLight span {
+    color: var(--color--poison);
+}
+
+.groundLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--ground),
+        0 0 50px var(--color--ground),
+        0 0 100px var(--color--ground);
+}
+
+.groundLight span {
+    color: var(--color--ground);
+}
+
+.rockLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--rock),
+        0 0 50px var(--color--rock),
+        0 0 100px var(--color--rock);
+}
+
+.rockLight span {
+    color: var(--color--rock);
+}
+
+.bugLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--bug),
+        0 0 50px var(--color--bug),
+        0 0 100px var(--color--bug);
+}
+
+.bugLight span {
+    color: var(--color--bug);
+}
+
+.ghostLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--ghost),
+        0 0 50px var(--color--ghost),
+        0 0 100px var(--color--ghost);
+}
+
+.ghostLight span {
+    color: var(--color--ghost);
+}
+
+.steelLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--steel),
+        0 0 50px var(--color--steel),
+        0 0 100px var(--color--steel);
+}
+
+.steelLight span {
+    color: var(--color--steel);
+}
+
+.fireLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--fire),
+        0 0 50px var(--color--fire),
+        0 0 100px var(--color--fire);
+}
+
+.fireLight span {
+    color: var(--color--fire);
+}
+
+.waterLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--water),
+        0 0 50px var(--color--water),
+        0 0 100px var(--color--water);
+}
+
+.waterLight span {
+    color: var(--color--water);
+}
+
+.grassLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--grass),
+        0 0 50px var(--color--grass),
+        0 0 100px var(--color--grass);
+}
+
+.grassLight span {
+    color: var(--color--grass);
+}
+
+.electricLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--electric),
+        0 0 50px var(--color--electric),
+        0 0 100px var(--color--electric);
+}
+
+.electricLight span {
+    color: var(--color--electric);
+}
+
+.psychicLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--psychic),
+        0 0 50px var(--color--psychic),
+        0 0 100px var(--color--psychic);
+}
+
+.psychicLight span {
+    color: var(--color--psychic);
+}
+
+.iceLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--ice),
+        0 0 50px var(--color--ice),
+        0 0 100px var(--color--ice);
+}
+
+.iceLight span {
+    color: var(--color--ice);
+}
+
+.dragonLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--dragon),
+        0 0 50px var(--color--dragon),
+        0 0 100px var(--color--dragon);
+}
+
+.dragonLight span {
+    color: var(--color--dragon);
+}
+
+.darkLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--dark),
+        0 0 50px var(--color--dark),
+        0 0 100px var(--color--dark);
+    color: var(--color--first);
+}
+
+.darkLight span {
+    color: var(--color--dark);
+}
+
+.fairyLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--fairy),
+        0 0 50px var(--color--fairy),
+        0 0 100px var(--color--fairy);
+}
+
+.fairyLight span {
+    color: var(--color--fairy);
+}
+
+.unknownLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--unknown),
+        0 0 50px var(--color--unknown),
+        0 0 100px var(--color--unknown);
+}
+
+.unknownLight span {
+    color: var(--color--unknown);
+}
+
+.shadowLight {
+    box-shadow: 0 0 5px var(--color--background),
+        0 0 25px var(--color--shadow),
+        0 0 50px var(--color--shadow),
+        0 0 100px var(--color--shadow);
+    color: var(--color--first);
+}
+
+.shadowLight span {
+    color: var(--color--shadow);
+}
+
+/* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--color--background);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .5s ease;
+    z-index: 10;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.lightboxContainer {
+    width: 80%;
+    background: var(--color--background);
+    color: var(--color--first);
+    border-radius: 15px;
+    position: relative;
+    text-align: center;
+}
+
+.btnClose {
+    position: absolute;
+    font-size: 30px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    top: 10px;
+    right: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all .2s ease;
+    cursor: pointer;
+    box-shadow: none;
+    background-color: var(--color--background);
+    color: var(--color--first);
+}
+
+.btnClose:hover {
+    transform: scale(1.2);
+}
+
+.infoContainer {
+    margin: 10px;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+}
+
+.infoContainer .nameImg h2 {
+    width: 170px;
+    border-radius: 15px;
+    margin: auto;
+}
+
+.infoContainer .nameImg img {
+    width: 180px;
+}
+
+.infoContainer .info {
+    line-height: .9em;
+    font-weight: normal;
+}
+
+@media only screen and (min-width:541px) {
+    .infoContainer {
+        display: flex;
+        margin: 20px;
+    }
+
+    .infoContainer .info {
+        margin-left: 50px;
+        line-height: 1.3em;
+    }
 }
