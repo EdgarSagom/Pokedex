@@ -46,8 +46,7 @@ setInterval(function () {
     next();
 }, 5000);
 
-// ****  MAIN  **** 
-// FETCH FOR LIGHTBOX
+// ****  FETCH FOR LIGHTBOX  ****
 const loadPokemon = (id, pokemonData) => {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(response => response.json())
@@ -84,6 +83,57 @@ const loadAbility = (id, pokemonData) => {
         }).catch(error => console.error('Error Fetch ability:', error));
 };
 
+// ****  NAV  ****
+// FORM SELECT OPTION
+const select = document.querySelector(('#type'));
+let type = 'all';
+pokemonArray = [];
+
+select.addEventListener('change', () => {
+    type = select.value
+    if (type === 'all') {
+        clean();
+        printAll(pokemonArray);
+    } else {
+        clean();
+        for (let i = 0; i < pokemonArray.length; i++) {
+            if (pokemonArray[i].type === type) {
+                templateCard(pokemonArray[i]);
+                // console.log(pokemonArray[i]);
+            };
+        };
+    };
+});
+
+// FORM BUTTON SEARCH
+const searchButton = document.querySelector('#searchButton');
+
+function searchPokemon() {
+    let searchInput = document.querySelector('#searchInput').value.toLowerCase();
+    // console.log(searchInput);
+
+    loadPokemon(searchInput, (pokemon) => {
+        // console.log(`pokemon.name:${pokemon.name} pokemon.id:${pokemon.id}`);
+        loadMove(pokemon.id, (move) => {
+            // console.log(`pokemon.name:${pokemon.name} move.id:${move.id} move.name:${move.name}`);
+            loadSpecies(pokemon.id, (species) => {
+                // console.log(`pokemon.name:${pokemon.name} species.id:${species.id} species.capture_rate:${species.capture_rate}`);
+                loadAbility(pokemon.id, (ability) => {
+                    // console.log(`pokemon.name:${pokemon.name} ability.id:${ability.id} ability.name:${ability.name}`);
+                    templateLightbox(pokemon, move, species, ability);
+                    document.querySelector('#searchInput').value = '';
+                });
+            });
+        });
+    });
+};
+
+searchButton.addEventListener('click', (event) => {
+    event.preventDefault();
+    searchPokemon();
+});
+
+// ****  MAIN  **** 
 // CARDS
 const baseUrl = 'https://pokeapi.co/api/v2';
 const card = document.querySelector('.card');
@@ -103,9 +153,10 @@ async function fetchAllPokemon() {
 
         for (const pokemon of pokemonAll) {
             const pokemonData = await fetchPokemonData(pokemon.url);
+            createData(pokemonData);
             // console.log(pokemonData);
-            templateCard(pokemonData);
         };
+        printAll(pokemonArray);
     } catch (error) {
         console.error('Error fetching PokemonData:', error);
     };
@@ -113,16 +164,25 @@ async function fetchAllPokemon() {
 
 fetchAllPokemon();
 
-function templateCard(pokemonData) {
+function createData(pokemon) {
+    // console.log(pokemon);
+    const newPokemon = {
+        name: pokemon.name,
+        img: pokemon.sprites.front_default,
+        type: pokemon.types[0].type.name
+    };
+    pokemonArray.push(newPokemon);
+};
+
+function templateCard(newPokemon) {
     let div = document.createElement('div');
-    let type = pokemonData.types[0].type.name;
 
     div.innerHTML =
         `
-            <div class='box ${type}' onclick='btn_card(this)' data-value='${pokemonData.name}'>
-                <img src="${pokemonData.sprites.front_default}" alt="${pokemonData.name}">
-                <h2>${pokemonData.name}</h2>
-                <p>Type: ${type}</p>
+            <div class='box ${newPokemon.type}' onclick='btn_card(this)' data-value='${newPokemon.name}'>
+                <img src="${newPokemon.img}" alt="${newPokemon.name}">
+                <h2>${newPokemon.name}</h2>
+                <p>Type: ${newPokemon.type}</p>
             </div>
         `
 
@@ -130,10 +190,10 @@ function templateCard(pokemonData) {
 };
 
 function btn_card(div) {
-    let dataName = div.getAttribute('data-value');
-    // console.log(dataName);
+    let dataValue = div.getAttribute('data-value');
+    // console.log(dataValue);
 
-    loadPokemon(dataName, (pokemon) => {
+    loadPokemon(dataValue, (pokemon) => {
         // console.log(`pokemon.name:${pokemon.name} pokemon.id:${pokemon.id}`);
         loadMove(pokemon.id, (move) => {
             // console.log(`pokemon.name:${pokemon.name} move.id:${move.id} move.name:${move.name}`);
@@ -146,6 +206,16 @@ function btn_card(div) {
             });
         });
     });
+};
+
+function clean() {
+    card.innerHTML = '';
+};
+
+function printAll(pokemons) {
+    for (let i = 0; i < pokemons.length; i++) {
+        templateCard(pokemons[i]);
+    };
 };
 
 // LIGHTBOX
@@ -184,7 +254,7 @@ function templateLightbox(pokemon, move, species, ability) {
                         <span>Habitat:</span> ${species.habitat.name} <br>
                         <span>Growth rate:</span> ${species.growth_rate.name} <br>
                         <span>Main Skill:</span> ${ability.name} <br>
-                        <span>Skill Description:</span> ${ability.effect_entries[1].effect}
+                        <span>Skill Description:</span> ${ability.effect_entries.find(en => en.language.name === 'en').effect}
                     </p>
                 </div>
             </div>
