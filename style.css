@@ -3,14 +3,14 @@
     --color--first: #fff;
     --font--family: cursive, sans-serif;
 
-    --color--normal: #fefae0;
+    --color--normal: #ced4da;
     --color--fighting: #ffa69e;
     --color--flying: #90e0ef;
     --color--poison: #7b2cbf;
-    --color--ground: #a5a5a5;
-    --color--rock: #595959;
+    --color--ground: #6c757d;
+    --color--rock: #343a40;
     --color--bug: #9c6644;
-    --color--ghost: #dad2c9;
+    --color--ghost: #a5a5a5;
     --color--steel: #9fb8d1;
     --color--fire: #d00000;
     --color--water: #0582ca;
@@ -108,7 +108,7 @@ nav {
     margin-top: 10px;
 }
 
-form {
+.form {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -118,7 +118,7 @@ form {
     font-size: 1em;
 }
 
-form img {
+.form img {
     max-width: 150px;
 }
 
@@ -777,4 +777,28 @@ form img {
         margin-left: 50px;
         line-height: 1.3em;
     }
+}
+
+footer {
+    border-radius: 15px 15px 0 0;
+    background: var(--color--background);
+    padding: 5px;
+    box-shadow: 0 0 5px var(--color--electric),
+        0 0 25px var(--color--electric);
+    color: var(--color--first);
+    text-align: center;
+}
+
+footer div h4 {
+    color: var(--color--electric);
+}
+
+footer div a {
+    margin: 10px;
+    text-decoration: none;
+}
+
+footer .copy {
+    font-size: 10px;
+    margin-top: 5px;
 }

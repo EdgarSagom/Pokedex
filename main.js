@@ -1,3 +1,5 @@
+const pokeAudio = new Audio('./assets/pokemonAudio.mp3');
+
 // ****  HEADER  ****
 // SLIDER
 const slider = document.querySelector('.slider');
@@ -85,9 +87,63 @@ const loadAbility = (id, pokemonData) => {
 
 // ****  NAV  ****
 // FORM SELECT OPTION
-const select = document.querySelector(('#type'));
 let type = 'all';
-pokemonArray = [];
+let pokemonArray = [];
+
+const form = document.querySelector('#form');
+
+function formButton() {
+    let div = document.createElement('div');
+
+    div.innerHTML =
+        `
+            <div>
+                <img src="./assets/pokemonLogo.png" alt="">
+            </div>
+            <div class="inpBtn">
+                <p>Type:</p>
+                <select name="Type" id="type">
+                    <option value="all">All</option>
+                    <option value="normal">Normal</option>
+                    <option value="fighting">Fighting</option>
+                    <option value="flying">Flying</option>
+                    <option value="poison">Poison</option>
+                    <option value="ground">Ground</option>
+                    <option value="rock">Rock</option>
+                    <option value="bug">Bug</option>
+                    <option value="ghost">Ghost</option>
+                    <option value="steel">Steel</option>
+                    <option value="fire">Fire</option>
+                    <option value="water">Water</option>
+                    <option value="grass">Grass</option>
+                    <option value="electric">Electric</option>
+                    <option value="psychic">Psychic</option>
+                    <option value="ice">Ice</option>
+                    <option value="dragon">Dragon</option>
+                    <option value="dark">Dark</option>
+                    <option value="fairy">Fairy</option>
+                    <option value="unknown">Unknown</option>
+                    <Option value="shadow">Shadow</Option>
+                </select>
+            </div>
+
+            <div class="inpBtn">
+                <div class="inputBox">
+                    <input id="searchInput" type="text" required="required">
+                    <h1 class="span">Pokémon Characters</h1>
+                </div>
+                <button id="searchButton">Search</button>
+            </div>
+        `
+
+    div.classList.add('form');
+
+    form.appendChild(div);
+};
+
+formButton();
+
+const select = document.querySelector('#type');
 
 select.addEventListener('change', () => {
     type = select.value
@@ -121,6 +177,7 @@ function searchPokemon() {
                 loadAbility(pokemon.id, (ability) => {
                     // console.log(`pokemon.name:${pokemon.name} ability.id:${ability.id} ability.name:${ability.name}`);
                     templateLightbox(pokemon, move, species, ability);
+                    pokeAudio.play();
                     document.querySelector('#searchInput').value = '';
                 });
             });
@@ -147,7 +204,7 @@ async function fetchPokemonData(url) {
 
 async function fetchAllPokemon() {
     try {
-        const response = await fetch(`${baseUrl}/pokemon?limit=140`); /* Fetching the first 350 Pokémon for this example. `${baseUrl}/pokemon?limit=350` Limit number*/
+        const response = await fetch(`${baseUrl}/pokemon?limit=340`);
         const data = await response.json();
         const pokemonAll = data.results;
 
@@ -202,6 +259,7 @@ function btn_card(div) {
                 loadAbility(pokemon.id, (ability) => {
                     // console.log(`pokemon.name:${pokemon.name} ability.id:${ability.id} ability.name:${ability.name}`);
                     templateLightbox(pokemon, move, species, ability);
+                    pokeAudio.play();
                 });
             });
         });
@@ -271,6 +329,43 @@ function templateLightbox(pokemon, move, species, ability) {
     btnClose.addEventListener('pointerdown', () => {
         lightbox.style.opacity = 0;
         lightbox.style.visibility = 'hidden';
+        pokeAudio.pause();
+        pokeAudio.currentTime = 0;
         lightbox.removeChild(div);
     });
 };
+
+// FOOTER
+const footer = document.querySelector('.footer');
+
+function templateFooter() {
+    let github = "https://github.com/EdgarSagom/Pokedex";
+    let instagram = "https://www.instagram.com/edgarsagom/";
+    let twitter = "https://twitter.com/SagomEdgar";
+    let pokeapi = "https://pokeapi.co/";
+
+    let div = document.createElement('div');
+
+    div.innerHTML =
+        `
+            <h4> Created by: Edgar Sagom</h4>
+            <div>
+                <p>Contacts:</p>
+                <a href="${github}" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/github.svg" alt="Github Logo">
+                </a>
+                <a href="${instagram}" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/instagram.svg" alt="Instagram Logo">
+                </a>
+                <a href="${twitter}" target="_blank" rel="noopener noreferrer">
+                    <img src="./assets/twitter.svg" alt="Twitter Logo">
+                </a>
+                <p>API Pokémon:<a href="${pokeapi}" target="_blank" rel="noopener noreferrer">${pokeapi}</a></p>
+                <p class="copy">©2023 Pokémon. ©1995 - 2023 Nintendo/Creatures Inc./GAME FREAK inc. TM, ®Nintendo.
+                </p>
+            </div>
+        `
+    footer.appendChild(div);
+};
+
+templateFooter();
